@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pet::class);
     }
+
+    public function agendamentos(): HasMany
+    {
+        return $this->hasMany(Agendamento::class);
+    }
 }
