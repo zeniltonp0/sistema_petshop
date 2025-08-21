@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Agendamento::class);
     }
+
+    public function pedidos(): HasMany
+    {
+        return $this->hasMany(Pedido::class);
+    }
 }
