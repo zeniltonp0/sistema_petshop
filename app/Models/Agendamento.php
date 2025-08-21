@@ -11,4 +11,9 @@ class Agendamento extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function pet(): BelongsTo
+    {
+        return $this->belongsTo(Pet::class);
+    }
 }
