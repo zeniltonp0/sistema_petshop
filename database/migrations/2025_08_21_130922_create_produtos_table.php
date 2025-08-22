@@ -14,8 +14,8 @@ return new class () extends Migration {
             $table->id();
             $table->string('nome');
             $table->decimal('preco', 8, 2);
-            $table->enum('preco', ['alimentacao', 'higiene', 'saude', 'brinquedo', 'acessorio']);
-            $table->string('imagem_url');
+            $table->enum('categoria', ['alimentacao', 'higiene', 'saude', 'brinquedo', 'acessorio'])->nullable();
+            $table->string('imagem_url')->nullable();
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ return new class () extends Migration {
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained('users', 'id')->onDelete('cascade');
+            $table->foreignIdFor(User::class)->constrained('users')->onDelete('cascade');
             $table->dateTime('data_pedido');
             $table->decimal('valor_total', 8, 2);
             $table->enum('status', ['pix', 'credito', 'debito']);
