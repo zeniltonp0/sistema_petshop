@@ -8,7 +8,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-    <body>
-        {{ $slot }}
+    <body class="bg-gray-100">
+        <livewire:sidebar />
+        <main class="ml-72 p-6">
+            {{ $slot }}
+        </main>
     </body>
 </html>
