@@ -1,6 +1,7 @@
 <div>
     <x-side-bar>
-        <x-slot:brand>Logo</x-slot:brand>
+        <x-slot:brand><x-images.logo />
+        </x-slot:brand>
         <x-side-bar.separator text="Principal" /> 
             <x-side-bar.item text="Home" icon="home" :route="route('welcome')" />
             <x-side-bar.item text="Meus Pets" icon="heart" route="#" />
