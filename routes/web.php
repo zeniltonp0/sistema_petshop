@@ -1,7 +1,13 @@
 <?php
 
+use App\Livewire\Auth\Register;
+use App\Livewire\Pet\Pets;
+use App\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', Welcome::class)->name('welcome');
+Route::get('/register', Register::class)->name('register');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/pets', Pets::class)->name('pets');
 });

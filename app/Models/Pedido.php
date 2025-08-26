@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 class Pedido extends Model
 {
@@ -16,11 +16,12 @@ class Pedido extends Model
     {
         return $this->belongsToMany(Produto::class, 'item_pedidos')
                     ->withPivot(['quantidade', 'preco_unitario'])
+                    ->using(ItemPedido::class)
                     ->withTimestamps();
     }
 
-    public function itens(): BelongsToMany
+    public function itens(): HasMany
     {
-        return $this->belongsToMany(ItemPedido::class);
+        return $this->hasMany(ItemPedido::class);
     }
 }

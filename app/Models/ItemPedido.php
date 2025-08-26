@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ItemPedido extends Model
+class ItemPedido extends Pivot
 {
     public function pedido()
     {
