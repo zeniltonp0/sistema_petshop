@@ -6,17 +6,22 @@
         </div>
 
         <form wire:submit="register">
+            @csrf
             <div class="mb-4">
-                <x-input label="Nome" />
+                <x-input label="Nome" wire:model="name"/>
                 @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
             <div class="mb-4">
-                <x-input label="Email" />
+                <x-input label="Email" wire:model="email"/>
                 @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
             <div class="mb-4">
-                <x-input label="Senha" />
+                <x-input label="Senha" wire:model="senha"/>
                 @error('senha') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            </div>
+            <div class="mb-4">
+                <x-input label="Confirmação de senha" wire:model="password_confirmation"/>
+                @error('password_confirmation') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
 
             <div class="mx-80">

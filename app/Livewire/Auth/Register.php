@@ -3,25 +3,27 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\{Auth, Hash};
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 #[Layout('components.layouts.guest')]
 class Register extends Component
 {
-    public ?string $nome = null;
+    public ?string $name = null;
 
     public ?string $email = null;
 
-    public ?string $senha = null;
+    public ?string $password = null;
+
+    public ?string $password_confirmation = null;
 
     public function register()
     {
         $user = User::create([
-            'name'     => $this->nome,
+            'name'     => $this->name,
             'email'    => $this->email,
-            'password' => $this->senha,
+            'password' => Hash::make($this->password),
         ]);
 
         Auth::login($user);
