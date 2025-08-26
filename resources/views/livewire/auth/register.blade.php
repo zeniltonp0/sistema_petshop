@@ -8,20 +8,16 @@
         <form wire:submit="register">
             @csrf
             <div class="mb-4">
-                <x-input label="Nome" wire:model="name"/>
-                @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                <x-input label="Nome" wire:model.blur="name"/>
             </div>
             <div class="mb-4">
-                <x-input label="Email" wire:model="email"/>
-                @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                <x-input label="Email" wire:model.blur="email"/>
             </div>
             <div class="mb-4">
-                <x-input label="Senha" wire:model="senha"/>
-                @error('senha') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                <x-input label="Senha" wire:model.blur="password"/>
             </div>
             <div class="mb-4">
-                <x-input label="Confirmação de senha" wire:model="password_confirmation"/>
-                @error('password_confirmation') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                <x-input label="Confirmação de senha" wire:model.blur="password_confirmation"/>
             </div>
 
             <div class="mx-80">
