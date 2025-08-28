@@ -1,7 +1,7 @@
 <div class="w-128 h-128 mt-4 grid grid-cols-2 space-x-2 space-y-2">
     @forelse ($this->pets as $pet)
         <div>
-            <x-card image="{{ $pet->foto_url }}">
+            <x-card image="{{ asset('storage/' . $pet->foto_pet) }}">
                 <span>{{ $pet->nome }}</span>
                 <span>{{ $pet->data_nascimento->format('d/m/Y') }}</span>
                 

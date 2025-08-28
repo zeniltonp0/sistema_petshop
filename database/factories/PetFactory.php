@@ -5,17 +5,10 @@ namespace Database\Factories;
 use App\Enums\{EspecieEnum, RacaEnum};
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pet>
- */
 class PetFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         $especie = fake()->randomElement(EspecieEnum::cases());
@@ -27,6 +20,28 @@ class PetFactory extends Factory
             'especie'         => $especie,
             'raca'            => $raca,
             'data_nascimento' => fake()->dateTimeBetween('-10 years', 'now'),
+            'foto_pet'        => $this->getFotoLocal($especie),
         ];
+    }
+
+    private function getFotoLocal(EspecieEnum $especie): ?string
+    {
+        $folder = match ($especie) {
+            EspecieEnum::CACHORRO => 'pets/cachorros',
+            EspecieEnum::GATO     => 'pets/gatos',
+            default               => null,
+        };
+
+        if (!$folder) {
+            return null;
+        }
+
+        $files = Storage::disk('public')->files($folder);
+
+        if (empty($files)) {
+            return null;
+        }
+
+        return fake()->randomElement($files);
     }
 }
