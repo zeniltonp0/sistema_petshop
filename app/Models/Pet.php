@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\{EspecieEnum, RacaEnum};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
@@ -18,4 +19,10 @@ class Pet extends Model
     {
         return $this->hasMany(Agendamento::class);
     }
+
+    protected $casts = [
+        'especie'         => EspecieEnum::class,
+        'raca'            => RacaEnum::class,
+        'data_nascimento' => 'date',
+    ];
 }
