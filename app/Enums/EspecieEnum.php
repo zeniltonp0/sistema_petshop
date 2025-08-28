@@ -6,7 +6,7 @@ enum EspecieEnum: string
 {
     case CACHORRO = 'Cachorro';
     case GATO     = 'Gato';
-    case PASSARO  = 'Passaro';
+    case PASSARO  = 'Pássaro';
     case HAMSTER  = 'Hamster';
     case OUTRO    = 'Outro';
 

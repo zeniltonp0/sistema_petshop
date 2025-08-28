@@ -24,8 +24,8 @@ class PetFactory extends Factory
         return [
             'user_id'         => User::factory(),
             'nome'            => fake()->firstName(),
-            'especie'         => fake()->randomElement($especie),
-            'raca'            => fake()->randomElement($raca),
+            'especie'         => $especie,
+            'raca'            => $raca,
             'data_nascimento' => fake()->dateTimeBetween('-10 years', 'now'),
         ];
     }
