@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\{EspecieEnum, RacaEnum};
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,14 +18,14 @@ class PetFactory extends Factory
      */
     public function definition(): array
     {
-        $especies = ['Cachorro', 'Gato', 'Pássaro', 'Hamster'];
-        $racas    = ['Golden Retriever', 'Siamês', 'Labrador', 'Persa', 'Canário', 'Sírio'];
+        $especie = fake()->randomElement(EspecieEnum::cases());
+        $raca    = fake()->randomElement(RacaEnum::fromEspecie($especie));
 
         return [
             'user_id'         => User::factory(),
             'nome'            => fake()->firstName(),
-            'especie'         => fake()->randomElement($especies),
-            'raca'            => fake()->randomElement($racas),
+            'especie'         => fake()->randomElement($especie),
+            'raca'            => fake()->randomElement($raca),
             'data_nascimento' => fake()->dateTimeBetween('-10 years', 'now'),
         ];
     }

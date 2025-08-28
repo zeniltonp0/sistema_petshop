@@ -25,4 +25,30 @@ enum RacaEnum: string
     {
         return array_column(self::cases(), 'value');
     }
+
+    // nessa função, vai conter a lógica de que, algumas raças só podem estar relacionadas com alguma especie.
+    public function especie(): EspecieEnum
+    {
+        return match($this) {
+            self::GOLDEN_RETRIEVER, self::LABRADOR, self::BULLDOG, self::VIRA_LATA_CARAMELO => EspecieEnum::CACHORRO,
+            self::SIAMES, self::PERSA, self::SPHYNX => EspecieEnum::GATO,
+            self::CANARIO, self::PERIQUITO => EspecieEnum::PASSARO,
+            default => EspecieEnum::OUTRO,
+        };
+    }
+
+    // aqui vai ser o filtro pra inserir dentro de um array de racas de uma determinada especie
+    public static function fromEspecie(EspecieEnum $especie): array
+    {
+        $racas = array_filter(
+            self::cases(),
+            fn ($raca) => $raca->especie() === $especie
+        );
+
+        if ($especie !== EspecieEnum::OUTRO) {
+            $racas[] = self::NAO_DEFINIDA;
+        }
+
+        return $racas;
+    }
 }
