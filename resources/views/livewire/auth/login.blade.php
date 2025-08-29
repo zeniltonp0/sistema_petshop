@@ -11,7 +11,7 @@
                 <x-input label="Email" wire:model.blur="email"/>
             </div>
             <div class="mb-4">
-                <x-input label="Senha" wire:model.blur="password"/>
+                <x-password label="Password" wire:model.blur="password" />
             </div>
 
             <div class="mx-86">
