@@ -8,7 +8,7 @@
         <form wire:submit="login">
             @csrf
             <div class="mb-4">
-                <x-input label="Email" wire:model.blur="email"/>
+                <x-input label="Email" wire:model="email"/>
             </div>
             <div class="mb-4">
                 <x-password label="Password" wire:model.blur="password" />

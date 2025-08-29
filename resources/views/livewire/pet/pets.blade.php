@@ -4,7 +4,7 @@
             <x-card image="{{ asset('storage/' . $pet->foto_pet) }}">
                 <div class="p-4 flex flex-col">
                     <h2 class="text-xl font-bold text-gray-900">{{ $pet->nome }}</h2>
-
+                    <hr>
                     <div class="text-sm text-gray-600 mt-2 space-y-1">
                         <p><strong>Nascimento:</strong> {{ $pet->data_nascimento->format('d/m/Y') }}</p>
                         <p><strong>Espécie:</strong> {{ $pet->especie->value }}</p>
