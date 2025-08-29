@@ -8,5 +8,7 @@
             <x-side-bar.item text="Loja" icon="shopping-bag" route="#" wire:navigate/>
             <x-side-bar.item text="Agendar Serviços" icon="calendar" route="#" wire:navigate/>
         <x-side-bar.separator text="Conta" /> 
+            <x-side-bar.item text="Perfil" icon="user" route="#" wire:navigate/>
+            <x-side-bar.item text="Sair" icon="arrow-left-start-on-rectangle" wire:click="logout" route="#"/>
     </x-side-bar>
 </div>
