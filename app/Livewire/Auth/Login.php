@@ -3,14 +3,13 @@
 namespace App\Livewire\Auth;
 
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\{Layout, Rule, Validate};
+use Livewire\Attributes\{Layout, Rule};
 use Livewire\Component;
 
 #[Layout('components.layouts.guest')]
 class Login extends Component
 {
-    #[Rule(['required', 'email', 'max:255', 'unique:users,email'])]
-    #[Validate('unique', message: 'Não foi possível realizar o login com este email e senha')]
+    #[Rule(['required', 'email', 'max:255'])]
     public ?string $email = null;
 
     #[Rule(['required', 'max:8', 'min:3', 'regex: /^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/'])]

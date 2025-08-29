@@ -11,13 +11,13 @@
                 <x-input label="Nome" wire:model.blur="name"/>
             </div>
             <div class="mb-4">
-                <x-input label="Email" wire:model.blur="email"/>
+                <x-input label="Email" wire:model="email"/>
             </div>
             <div class="mb-4">
-                <x-input label="Senha" wire:model.blur="password"/>
+                <x-password label="Password" wire:model.blur="password" />
             </div>
             <div class="mb-4">
-                <x-input label="Confirmação de senha" wire:model.blur="password_confirmation"/>
+                <x-password label="Password Confirmation" wire:model.blur="password_confirmation" />
             </div>
 
             <div class="mx-80">
