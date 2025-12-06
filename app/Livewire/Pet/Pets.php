@@ -35,6 +35,12 @@ class Pets extends Component
                 ->paginate(2)
                 ->withQueryString();
     }
+
+    public function create()
+    {
+        $this->dispatch('pets::create')->to('pet.create');
+    }
+
     public function render()
     {
         return view('livewire.pet.pets');
