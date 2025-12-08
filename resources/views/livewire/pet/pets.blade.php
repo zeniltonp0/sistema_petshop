@@ -12,4 +12,5 @@
     </x-table>
     <x-button text="Cadastrar novo Pet" class="mt-4" color="secondary" loading wire:click="$dispatch('pets::create')"/>
     <livewire:pet.create />
+     {{-- {{ $rows->links() }} --}}
 </div>

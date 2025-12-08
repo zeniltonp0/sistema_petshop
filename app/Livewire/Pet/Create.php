@@ -6,9 +6,12 @@ use App\Models\Pet;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\{On, Validate};
 use Livewire\Component;
+use TallStackUi\Traits\Interactions;
 
 class Create extends Component
 {
+    use Interactions;
+
     #[Validate(['required', 'string'])]
     public ?string $nome = null;
 
@@ -46,6 +49,8 @@ class Create extends Component
         ]);
 
         $this->modal = false;
+        $this->toast()->success('Amiguinho(a) cadastrado com sucesso!')->send();
+        $this->dispatch('pets::refresh')->to('pet.pets');
         // $this->reset();
     }
 
