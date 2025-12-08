@@ -1,3 +1,3 @@
 <div>
-    oi do dashboard
+    <p>Olá, {{ $this->userName() }}</p>
 </div>

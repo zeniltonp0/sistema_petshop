@@ -2,30 +2,46 @@
 
 namespace Database\Factories;
 
+use App\Enums\{EspecieEnum, RacaEnum};
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pet>
- */
 class PetFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
-        $especies = ['Cachorro', 'Gato', 'Pássaro', 'Hamster'];
-        $racas    = ['Golden Retriever', 'Siamês', 'Labrador', 'Persa', 'Canário', 'Sírio'];
+        $especie = fake()->randomElement(EspecieEnum::cases());
+        $raca    = fake()->randomElement(RacaEnum::fromEspecie($especie));
 
         return [
             'user_id'         => User::factory(),
             'nome'            => fake()->firstName(),
-            'especie'         => fake()->randomElement($especies),
-            'raca'            => fake()->randomElement($racas),
+            'especie'         => $especie,
+            'raca'            => $raca,
             'data_nascimento' => fake()->dateTimeBetween('-10 years', 'now'),
+            'foto_pet'        => $this->getFotoLocal($especie),
         ];
+    }
+
+    private function getFotoLocal(EspecieEnum $especie): ?string
+    {
+        $folder = match ($especie) {
+            EspecieEnum::CACHORRO => 'pets/cachorros',
+            EspecieEnum::GATO     => 'pets/gatos',
+            default               => null,
+        };
+
+        if (!$folder) {
+            return null;
+        }
+
+        $files = Storage::disk('public')->files($folder);
+
+        if (empty($files)) {
+            return null;
+        }
+
+        return fake()->randomElement($files);
     }
 }

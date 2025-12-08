@@ -9,6 +9,7 @@
 </head>
 
     <body class="bg-gray-100">
+        <x-toast /> 
         <livewire:sidebar />
         <main class="ml-72 p-6">
             {{ $slot }}
