@@ -44,6 +44,11 @@ class Pets extends Component
         $this->dispatch('pets::create')->to('pet.create');
     }
 
+    public function edit(int $id)
+    {
+        $this->dispatch('pets::edit', id: $id)->to('pet.update');
+    }
+
     #[On('pets::refresh')]
     public function render()
     {

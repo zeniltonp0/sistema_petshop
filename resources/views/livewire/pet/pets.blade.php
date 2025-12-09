@@ -5,12 +5,13 @@
                 color="blue"
                 md
                 flat
-                icon="eye"
-                wire:click="$dispatch('pets::show', {id : '{{ $row->id }}'})"
+                icon="pencil"
+                wire:click="$dispatch('pets::edit', {id : '{{ $row->id }}'})"
             />
         @endinteract
     </x-table>
     <x-button text="Cadastrar novo Pet" class="mt-4" color="secondary" loading wire:click="$dispatch('pets::create')"/>
     <livewire:pet.create />
+    <livewire:pet.update />
      {{-- {{ $rows->links() }} --}}
 </div>
