@@ -17,7 +17,7 @@ class RacaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nome' => fake()->sentence(1),
         ];
     }
 }
