@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany, HasOne};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 class Pet extends Model
 {
@@ -29,14 +29,14 @@ class Pet extends Model
         return $this->hasMany(Agendamento::class);
     }
 
-    public function raca(): HasOne
+    public function raca(): BelongsTo
     {
-        return $this->hasOne(Raca::class);
+        return $this->belongsTo(Raca::class);
     }
 
-    public function especie(): HasOne
+    public function especie(): BelongsTo
     {
-        return $this->hasOne(Especie::class);
+        return $this->belongsTo(Especie::class);
     }
 
     protected $casts = [

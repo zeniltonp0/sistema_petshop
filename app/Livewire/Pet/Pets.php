@@ -20,7 +20,8 @@ class Pets extends Component
         return [
             ['index' => 'id', 'label' => '#'],
             ['index' => 'nome', 'label' => 'Nome'],
-            ['index' => 'especie', 'label' => 'Espécie'],
+            ['index' => 'especie.nome', 'label' => 'Espécie'],
+            ['index' => 'raca.nome', 'label' => 'Raça'],
             ['index' => 'action'],
         ];
     }

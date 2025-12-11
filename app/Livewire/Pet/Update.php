@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Pet;
 
-use App\Models\Pet;
-use Livewire\Attributes\{On, Validate};
+use App\Models\{Especie, Pet, Raca};
+use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\{Computed, On, Validate};
 use Livewire\Component;
 
 class Update extends Component
@@ -13,10 +14,10 @@ class Update extends Component
     #[Validate('required|min:3')]
     public string $nome = '';
 
-    // #[Validate('required')]
-    // public string $especie = '';
+    #[Validate('required')]
+    public ?string $especie = null;
 
-    // public ?string $raca = null;
+    public ?string $raca = null;
 
     public string $sexo = '';
 
@@ -33,26 +34,28 @@ class Update extends Component
 
     public function loadPet(int $id)
     {
-        $pet         = Pet::findOrFail($id);
-        $this->petId = $pet->id;
-        $this->nome  = $pet->nome;
-        // $this->especie = $pet->especie;
-        // $this->raca = $pet->raca;
+        $pet                   = Pet::findOrFail($id);
+        $this->petId           = $pet->id;
+        $this->nome            = $pet->nome;
+        $this->especie         = $pet->especie_id; // @phpstan-ignore-line
+        $this->raca            = $pet->raca_id; // @phpstan-ignore-line
         $this->sexo            = $pet->sexo;
         $this->data_nascimento = $pet->data_nascimento->format('Y-m-d');
+        // dd($pet);
     }
 
     public function update()
     {
+        // dd($this->all());
 
         $this->validate();
 
         $pet = Pet::findOrFail($this->petId);
 
         $pet->update([
-            'nome' => $this->nome,
-            // 'especie' => $this->especie,
-            // 'raca' => $this->raca,
+            'nome'            => $this->nome,
+            'especie_id'      => $this->especie,
+            'raca_id'         => $this->raca ?: null,
             'sexo'            => $this->sexo,
             'data_nascimento' => $this->data_nascimento,
         ]);
@@ -61,6 +64,18 @@ class Update extends Component
         $this->dispatch('pets::refresh');
         $this->reset();
 
+    }
+
+    #[Computed]
+    public function especies(): Collection
+    {
+        return Especie::query()->orderBy('nome')->get();
+    }
+
+    #[Computed]
+    public function racas(): Collection
+    {
+        return Raca::query()->orderBy('nome')->get();
     }
 
     public function render()
