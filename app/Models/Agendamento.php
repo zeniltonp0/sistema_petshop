@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Agendamento extends Model
 {
+    use HasFactory;
     public function pet(): BelongsTo
     {
         return $this->belongsTo(Pet::class);
@@ -15,10 +17,5 @@ class Agendamento extends Model
     public function servico(): BelongsTo
     {
         return $this->belongsTo(Servico::class);
-    }
-
-    public function getHorarioFormatadoAttribute(): string
-    {
-        return $this->data_hora_inicio->format('H:i') . ' - ' . $this->data_hora_fim->format('H:i'); // @phpstan-ignore-line
     }
 }

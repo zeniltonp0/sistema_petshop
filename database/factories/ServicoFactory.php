@@ -17,7 +17,11 @@ class ServicoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nome'            => fake()->randomElement(['Banho Completo', 'Tosa Higiênica', 'Tosa na Tesoura', 'Corte de Unhas', 'Hidratação', 'Day Care']),
+            'descricao'       => fake()->sentence(),
+            'preco'           => fake()->random_int(50, 200),
+            'duracao_minutos' => fake()->randomElement([30, 60, 90, 120]),
+            'ativo'           => true,
         ];
     }
 }
