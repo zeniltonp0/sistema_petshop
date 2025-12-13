@@ -20,7 +20,8 @@ class Pets extends Component
         return [
             ['index' => 'id', 'label' => '#'],
             ['index' => 'nome', 'label' => 'Nome'],
-            ['index' => 'especie', 'label' => 'Espécie'],
+            ['index' => 'especie.nome', 'label' => 'Espécie'],
+            ['index' => 'raca.nome', 'label' => 'Raça'],
             ['index' => 'action'],
         ];
     }
@@ -42,6 +43,11 @@ class Pets extends Component
     public function create()
     {
         $this->dispatch('pets::create')->to('pet.create');
+    }
+
+    public function edit(int $id)
+    {
+        $this->dispatch('pets::edit', id: $id)->to('pet.update');
     }
 
     #[On('pets::refresh')]
