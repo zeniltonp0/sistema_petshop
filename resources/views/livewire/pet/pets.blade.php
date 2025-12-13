@@ -25,7 +25,7 @@
                             color="white"
                             class="text-blue-500 shadow-sm hover:bg-blue-50"
                             icon="pencil"
-                            sm
+                            md
                             wire:click="$dispatch('pets::edit', {id : '{{ $pet->id }}'})"
                         />
                     </div>
