@@ -5,12 +5,11 @@
             <h1 class="text-3xl font-bold text-gray-800">Agendamentos</h1>
             <p class="text-gray-500 mt-1">Gerencie os cuidados dos seus amiguinhos.</p>
         </div>
-        <x-button 
+        <a href="{{ route('agendamentos.create') }}"><x-button
             text="Novo Agendamento" 
             icon="calendar" 
             color="primary" 
-            wire:click="$dispatch('agendamento::create')"
-        />
+        /></a>
     </div>
 
     <section>

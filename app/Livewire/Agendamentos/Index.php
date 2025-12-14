@@ -6,19 +6,23 @@ use App\Models\Agendamento;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\{Component, WithPagination};
+use TallStackUi\Traits\Interactions;
 
 class Index extends Component
 {
     use WithPagination;
+    use Interactions;
 
     public function cancel($id)
     {
-        $appointment = Agendamento::where('pet_id', Auth::user()->pets()->select('id'))
-            ->findOrFail($id);
+        $appointment = Agendamento::whereHas('pet', function ($query) {
+            $query->where('user_id', Auth::id());
+        })->findOrFail($id);
 
         if ($appointment->status !== 'concluido') {
             $appointment->update(['status' => 'cancelado']);
-            $this->dispatch('notify', type: 'success', content: 'Agendamento cancelado.');
+
+            $this->toast()->success('Cancelamento realizado com sucesso!')->send();
         }
     }
 

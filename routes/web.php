@@ -13,5 +13,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', Welcome::class)->name('welcome');
     Route::get('/pets', Pets::class)->name('pets');
-    Route::get('agendamentos', Agendamentos\Index::class)->name('agendamentos');
+    Route::get('agendamentos', Agendamentos\Index::class)->name('agendamentos.index');
+    Route::get('agendamentos/create', Agendamentos\Create::class)->name('agendamentos.create');
 });
