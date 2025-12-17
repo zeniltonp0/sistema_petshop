@@ -26,5 +26,10 @@ class DatabaseSeeder extends Seeder
             ->has(Pet::factory()->count(3))
             ->create();
 
+        $this->call([
+            ServicoSeeder::class,
+            AgendamentoSeeder::class,
+        ]);
+
     }
 }

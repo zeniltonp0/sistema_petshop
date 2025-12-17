@@ -1,5 +1,6 @@
 *.log
 .DS_Store
+/.github/workflows/laravel.yml
 .env
 .env.backup
 .env.production
