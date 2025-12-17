@@ -3,6 +3,7 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use App\Notifications\EmailNovoUser;
 use Illuminate\Support\Facades\{Auth, Hash};
 use Livewire\Attributes\{Layout, Rule};
 use Livewire\Attributes\Validate;
@@ -32,6 +33,8 @@ class Register extends Component
             'email'    => $this->email,
             'password' => Hash::make($this->password),
         ]);
+
+        $user->notify(new EmailNovoUser());
 
         Auth::login($user);
 
